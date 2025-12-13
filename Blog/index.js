@@ -38,21 +38,19 @@ let lastId = 3;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Write your code here//
-
-//CHALLENGE 1: GET All posts
+// GET All posts
 app.get("/posts", (req, res) => {
   res.json(posts);
 });
 
-//CHALLENGE 2: GET a specific post by id
+// GET a specific post by id
 app.get("/posts/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const post = posts.find((e) => e.id === id);
   res.json(post);
 });
 
-//CHALLENGE 3: POST a new post
+// POST a new post
 app.post("/posts", (req, res) => {
   posts.push({
     id: lastId + 1,
@@ -67,7 +65,7 @@ app.post("/posts", (req, res) => {
   res.json(posts.at(-1));
 });
 
-//CHALLENGE 4: PATCH a post when you just want to update one parameter
+// PATCH a post when you just want to update one parameter
 app.patch("/posts/:id", (req, res) => {
   const index = posts.indexOf(posts.find((e) => e.id === parseInt(req.params.id)));
 
@@ -82,7 +80,7 @@ app.patch("/posts/:id", (req, res) => {
   res.json(posts.at(index));
 });
 
-//CHALLENGE 5: DELETE a specific post by providing the post id.
+// DELETE a specific post by providing the post id.
 app.delete("/posts/:id", (req, res) => {
   const index = posts.findIndex((e) => e.id === parseInt(req.params.id));
   posts.splice(index, 1);
